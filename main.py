@@ -1,3 +1,5 @@
+"""Esse modulo contem as funcoes relacionadas ao caminho"""
+
 from lista import Lista
 
 class Busca(Lista):

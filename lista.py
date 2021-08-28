@@ -1,3 +1,6 @@
+"""Esse modulo se refere a estrutura de dados.
+Classes existentes aqui: Lista, Nos"""
+
 class Lista(object):
     head = None
     tail = None

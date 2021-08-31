@@ -91,8 +91,6 @@ class Busca(Lista):
                     if novo == fim:
                         caminho = []
                         caminho += l2.exibeCaminho()
-                        print("Fila:\n",l1.exibeLista())
-                        print("\nÁrvore de busca:\n",l2.exibeLista())
                         return caminho
 
         return "Caminho não encontrado."

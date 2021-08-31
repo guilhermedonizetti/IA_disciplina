@@ -6,15 +6,21 @@ from main import Busca
 class Agente(Busca):
 
     def __init__(self):
-        pass
+        self.pontos_ajuda_hum = ["GIORGIU", "FAGARAS",
+                    "CRAIOVA", "ZERIND", "RIMNICU VILCEA"]
 
     def encontrar_caminho(self):
         """Metodo para encontrar um caminho entre dois pontos."""
-        cidade_inicial = input("Cidade inicial: ")
-        cidade_final = input("Cidade final: ")
-        caminho = self.caminho(cidade_inicial, cidade_final)
+        cidade_final = input("Ajuda Humanitária para (cidade): ")
 
-        print(caminho)
+        tam_caminho = 10000
+        for i in self.pontos_ajuda_hum:
+            caminho = self.caminho(i, cidade_final.upper())
+            if len(caminho) < tam_caminho:
+                tam_caminho = len(caminho)
+                rota = caminho
+
+        print("\nA rota mais curta é: {}".format(rota))
 
 agente = Agente()
 agente.encontrar_caminho()

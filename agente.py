@@ -6,11 +6,11 @@ from main import Busca
 class Agente(Busca):
 
     def __init__(self):
-        self.pontos_ajuda_hum = ["GIORGIU", "FAGARAS",
-                    "CRAIOVA", "ZERIND", "RIMNICU VILCEA"]
+        self.pontos_ajuda_hum = ["CRUZEIRO", "GUARATINGUETÁ",
+                    "SÃO SEBASTIÃO", "TAUBATÉ", "CAÇAPAVA"]
 
-        self.pontos_atendimento = ["PITESTI", "FAGARAS",
-                    "TIMISOARA", "ZERIND", "VASLUI"]
+        self.pontos_atendimento = ["SÃO JOSÉ DOS CAMPOS", "LORENAS",
+                    "UBATUBA", "QUELUZ", "TREMEMBÉ"]
 
     def encontrar_caminho(self):
         """Metodo para encontrar um caminho entre dois pontos."""
@@ -34,7 +34,7 @@ class Agente(Busca):
                 tam_caminho = len(caminho)
                 rota = caminho
 
-        print("\nO caminho para oatendimento é: {}".format(rota))
+        print("\nO caminho para o atendimento é: {}".format(rota))
 
 agente = Agente()
 agente.encontrar_caminho()

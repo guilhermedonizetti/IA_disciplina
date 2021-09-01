@@ -1,36 +1,12 @@
 """Esse modulo contem as funcoes relacionadas ao caminho"""
 
 from lista import Lista
+import lista_cidades as cd
 
 class Busca(Lista):
 
-    nos = ["ARAD", "BUCARESTE", "CRAIOVA", "DOBRETA",
-                    "EFORIE", "FAGARAS", "GIORGIU", "HIRSOVA",
-                    "IASI", "LUGOJ", "MEHADIA", "NEAMT", "ORADEA",
-                    "PITESTI", "RIMNICU VILCEA", "SIBIU", "TIMISOARA",
-                    "URZICENI", "VASLUI", "ZERIND"]
-    grafo = [
-            ["ZERIND", "TIMISOARA", "SIBIU"],                 #indice 0
-            ["URZICENI", "PITESTI", "GIORGIU", "FAGARAS"],
-            ["RIMNICU VILCEA", "PITESTI", "DOBRETA"],
-            ["MEHADIA", "CRAIOVA"],
-            ["HIRSOVA"],
-            ["SIBIU", "BUCARESTE"],
-            ["BUCARESTE"],
-            ["URZICENI", "EFORIE"],
-            ["VASLUI", "NEAMT"],
-            ["TIMISOARA", "MEHADIA"],
-            ["LUGOJ", "DOBRETA"],
-            ["IASI"],
-            ["ZERIND", "SIBIU"],
-            ["RIMNICU VILCEA", "CRAIOVA", "BUCARESTE"],
-            ["SIBIU", "PITESTI", "CRAIOVA"],
-            ["RIMNICU VILCEA", "ORADEA", "FAGARAS", "ARAD"],
-            ["LUGOJ", "ARAD"],
-            ["VASLUI", "HIRSOVA", "BUCARESTE"],
-            ["URZICENI", "IASI"],
-            ["ORADEA", "ARAD"]
-       ]
+    nos = cd.lista_cidades
+    grafo = cd.ligacoes_cidades
 
     def caminho(self, inicio, fim):
         """Metodo para encontrar caminho entre dois pontos.

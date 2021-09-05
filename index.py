@@ -31,7 +31,10 @@ class RotasCidades:
         rota_AH = agente.profundidade(self.cidade_final)
         rota_At = agente.encontrar_atendimento(self.cidade_final)
         rota_final = agente.unifica_caminho(rota_AH, rota_At)
-        st.json(rota_final)
+        
+        st.info("Ajuda Humanitária sai de: {}.".format(rota_final[0]))
+        st.info("O Atendimento mais próximo é: {}.".format(rota_final[len(rota_final)-1]))
+        
         self.busca_coordenadas(rota_final)
     
     #metodo para fazer as coordenadas
@@ -54,7 +57,7 @@ class RotasCidades:
     
     #metodo para desenhar e exibir mapa
     def plotar_mapa(self, coord_rota):
-        st.json(coord_rota)
+        
         try:
             ALL_LAYERS = {
                 "Pontos": pdk.Layer(
@@ -97,6 +100,8 @@ class RotasCidades:
         except:
             st.error("Algum erro aconteceu.")
     
+    #Metodo para atribuir um estilo ao mapa de acordo com o horario
+    #Noite: recebe dar - Dia: recebe claro
     def HoraEstilo(self):
         hora = str(self.horario)
         hora = hora.split(" ")

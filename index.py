@@ -1,5 +1,7 @@
 import streamlit as st
 import pydeck as pdk
+from requests import get
+from json import loads
 from datetime import datetime
 from agente import Agente
 from lista_cidades import lista_cidades
@@ -39,11 +41,11 @@ class RotasCidades:
     
     #metodo para fazer as coordenadas
     def busca_coordenadas(self, rota):
-        coord = coordenadas
         coord_da_rota = []
         for i in rota:
-            posicao = self.cidades.index(i)
-            coord_da_rota.append(coord[posicao])
+            requisicao = get("https://api-valeparaiba.herokuapp.com/valedoparaiba/coordenadas/{}/".format(i))
+            lat_lon = loads(requisicao.content)
+            coord_da_rota.append(lat_lon)
         
         for i in range(len(coord_da_rota)):
             if i == len(coord_da_rota)-1:

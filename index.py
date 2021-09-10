@@ -5,7 +5,6 @@ from json import loads
 from datetime import datetime
 from agente import Agente
 from lista_cidades import lista_cidades
-from coordenadas import coordenadas
 
 class RotasCidades:
 
@@ -36,7 +35,9 @@ class RotasCidades:
         
         st.info("Ajuda Humanitária sai de: {}.".format(rota_final[0]))
         st.info("O Atendimento mais próximo é: {}.".format(rota_final[len(rota_final)-1]))
-        
+        if len(rota_final)>=3:
+            desc = self.descrever_rota(rota_final)
+            st.success(desc)
         self.busca_coordenadas(rota_final)
     
     #metodo para fazer as coordenadas
@@ -59,7 +60,6 @@ class RotasCidades:
     
     #metodo para desenhar e exibir mapa
     def plotar_mapa(self, coord_rota):
-        
         try:
             ALL_LAYERS = {
                 "Pontos": pdk.Layer(
@@ -70,7 +70,7 @@ class RotasCidades:
                     get_radius=30000,
                     radius_scale=0.05,
                 ),
-                "Outbound Flow": pdk.Layer(
+                "Ligações": pdk.Layer(
                     "ArcLayer",
                     data=coord_rota,
                     get_source_position=["lon", "lat"],
@@ -112,6 +112,16 @@ class RotasCidades:
             return "mapbox://styles/mapbox/streets-v11"
         else:
             return "mapbox://styles/mapbox/dark-v10"
+    
+    #Funcao para descrever a rota
+    def descrever_rota(self, rota):
+        desc = "Saindo de {}, você deverá passar por ".format(rota[0])
+        for i in range(1, len(rota)):
+            if i == len(rota)-1:
+                desc = desc+" e por fim {}.".format(rota[i])
+            else:
+                desc = desc+" {},".format(rota[i])
+        return desc
 
 if __name__ == "__main__":
     rc = RotasCidades()

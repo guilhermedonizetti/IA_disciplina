@@ -8,11 +8,15 @@ class Agente(Busca):
 
     #Inicializa as listas que sao de valores padrao
     def __init__(self):
+        #Define 5 cidades para pontos de Ajuda Humanitaria
         self.pontos_ajuda_hum = ["CRUZEIRO", "GUARATINGUETÁ",
-                    "SÃO SEBASTIÃO", "TAUBATÉ", "CAÇAPAVA"]
+                    "TAUBATÉ", "SÃO JOSÉ DOS CAMPOS", "CARAGUATATUBA"]
 
-        self.pontos_atendimento = ["SÃO JOSÉ DOS CAMPOS", "LORENAS",
-                    "UBATUBA", "QUELUZ", "TREMEMBÉ"]
+        #Define 10 cidades para ponto de Atendimento hospitalar
+        self.pontos_atendimento = ["QUELUZ", "CRUZEIRO", "LORENA",
+                    "GUARANTINGUETÁ", "APARECIDA", "TAUBATÉ",
+                    "PINDAMONHANGABA", "SÃO JOSÉ DOS CAMPOS",
+                    "CAÇAPAVA", "SÃO SEBASTIÃO"]
         
         self.rota_Ajuda_Hum =  self.rota_atendimento = []
 

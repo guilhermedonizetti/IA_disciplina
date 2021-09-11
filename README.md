@@ -1,7 +1,8 @@
 <h1 align="center">IA_disciplina</h1>
 <p align="center">
 Repositório para desenvolvimento em equipe das atividades de Inteligência Artificial, disciplina do 6º Sem na Fatec Cruzeiro.<br>
-<i>Status do Projeto: <b>Em desenvolvimento</b> :computer:</i>
+<i>Status do Projeto: <b>Em desenvolvimento</b> :computer:</i><br>
+<b>Acesse ao programa: </b>https://share.streamlit.io/guilhermedonizetti/ia_disciplina/index.py
 </p>
 
 <b>Objetivo: </b>desenvolver um programa para gerar a melhor rota entre cidades. Em um cenário de catástrofe (independente do motivo), a ação da Ajuda Humanitária precisa do caminho mais curto para atender em menor tempo, também o caminho entre a cidade que sofre um desastre até um ponto de atendimento hospitalar precisa ser otimizado. Esse projeto visa a resolução desse problema!
@@ -15,6 +16,13 @@ Repositório para desenvolvimento em equipe das atividades de Inteligência Arti
 <b>Etapas desenvolvidas: </b><br>
 :heavy_check_mark: Encontra a rota entre o ponto de Ajuda Humanitária mais próximo e uma cidade X<br>
 :heavy_check_mark: Encontra a rota entre a cidade X e o ponto de Atendimento Hospitalar mais próximo
+
+<br>
+
+<b>Demonstração: </b>a imagem abaixo mostra a rota gerada na tentativa de atender a uma demanda no município de Queluz - SP. Porém, é possível verificar a rota utilizando qualquer cidade do Vale do Paraíba (paulista) acessando (https://share.streamlit.io/guilhermedonizetti/ia_disciplina/index.py). Para exibir a imagem do mapa, selecione "Buscar rota".<br>
+<p align="center">
+<img src="https://github.com/guilhermedonizetti/IA_disciplina/blob/master/images/mapa_gerado.png" width="500" height="510"></img>
+</p>
 
 <br>
 

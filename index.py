@@ -30,6 +30,7 @@ class RotasCidades:
     def gerar_rota(self):
         agente = Agente()
         rota_AH = agente.profundidade(self.cidade_final)
+        #rota_AH = agente.busca_profundidade_limitada(self.cidade_final)
         rota_At = agente.encontrar_atendimento(self.cidade_final)
         rota_final = agente.unifica_caminho(rota_AH, rota_At)
         
@@ -90,7 +91,7 @@ class RotasCidades:
                 if st.sidebar.checkbox(layer_name, True)
             ]
             if selected_layers:
-                estilo = self.HoraEstilo()
+                estilo = "mapbox://styles/mapbox/streets-v11"
                 st.pydeck_chart(pdk.Deck(
                     map_style=estilo,
                     initial_view_state={"latitude": coord_rota[0]["lat"], #37.76
@@ -101,17 +102,6 @@ class RotasCidades:
                 st.error("Please choose at least one layer above.")
         except:
             st.error("Algum erro aconteceu.")
-    
-    #Metodo para atribuir um estilo ao mapa de acordo com o horario
-    #Noite: recebe dar - Dia: recebe claro
-    def HoraEstilo(self):
-        hora = str(self.horario)
-        hora = hora.split(" ")
-        hora = hora[1].split(":")
-        if int(hora[0])>6 and int(hora[0])<18:
-            return "mapbox://styles/mapbox/streets-v11"
-        else:
-            return "mapbox://styles/mapbox/dark-v10"
     
     #Funcao para descrever a rota
     def descrever_rota(self, rota):

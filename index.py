@@ -9,9 +9,11 @@ from lista_cidades import lista_cidades
 class RotasCidades:
 
     def __init__(self):
+        self.limite = False
         self.cidades = lista_cidades
         self.cidade_final = ""
-        self.horario = datetime.now()
+        self.metodos_opcoes = ["AMPLITUDE", "PROFUNDIDADE", "PROFUNDIDADE LIMITADA",
+                               "APROFUNDAMENTO ITERATIVO", "BIDIRECIONAL"]
 
     #metodo que ira iniciar quando a pagina carregar
     def inicial(self):
@@ -19,8 +21,14 @@ class RotasCidades:
 
         st.set_page_config(page_title="Rotas Cidades")
         st.title("Rotas Cidades")
-        texto = "Cidade para receber Ajuda Humanitária:"
-        self.cidade_final = st.sidebar.selectbox(texto, self.cidades)
+        texto1 = "Cidade para receber Ajuda Humanitária:"
+        self.cidade_final = st.sidebar.selectbox(texto1, self.cidades)
+        texto2 = "Método para gerar a rota:"
+        self.metodo = st.sidebar.selectbox(texto2, self.metodos_opcoes)
+        if self.metodo == self.metodos_opcoes[2]:
+            buscar_rota = False
+            texto = "Informe o limite da rota:"
+            self.limite = st.sidebar.number_input(texto, min_value=1, step=1, max_value=10)
         buscar_rota = st.sidebar.checkbox("Buscar rota")
 
         if buscar_rota:
@@ -29,10 +37,12 @@ class RotasCidades:
     #metodo para gerar a rota de Ajuda Humanitaria e Atendimento
     def gerar_rota(self):
         agente = Agente()
-        rota_AH = agente.profundidade(self.cidade_final)
+        rota_AH = agente.encontrar_ajuda_humanitaria(self.cidade_final, self.metodo, self.limite)
+        rota_AT = agente.encontrar_atendimento(self.cidade_final, self.metodo, self.limite)
+        #rota_AH = agente.profundidade(self.cidade_final)
         #rota_AH = agente.busca_profundidade_limitada(self.cidade_final)
-        rota_At = agente.encontrar_atendimento(self.cidade_final)
-        rota_final = agente.unifica_caminho(rota_AH, rota_At)
+        #rota_At = agente.encontrar_atendimento(self.cidade_final)
+        rota_final = agente.unifica_caminho(rota_AH, rota_AT)
         
         st.info("Ajuda Humanitária sai de: {}.".format(rota_final[0]))
         st.info("O Atendimento mais próximo é: {}.".format(rota_final[len(rota_final)-1]))

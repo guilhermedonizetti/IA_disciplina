@@ -85,7 +85,7 @@ class Lista(object):
         return caminho
     
     def exibeCaminho1(self,valor):
-                
+
         atual = self.head
         while atual.valor1 != valor:
             atual = atual.proximo

@@ -15,14 +15,29 @@ Repositório para desenvolvimento em equipe das atividades de Inteligência Arti
 
 <b>Etapas desenvolvidas: </b><br>
 :heavy_check_mark: Encontra a rota entre o ponto de Ajuda Humanitária mais próximo e uma cidade X<br>
-:heavy_check_mark: Encontra a rota entre a cidade X e o ponto de Atendimento Hospitalar mais próximo
+:heavy_check_mark: Encontra a rota entre a cidade X e o ponto de Atendimento Hospitalar mais próximo<br>
+:heavy_check_mark: Busca pela amplitude da rota<br>
+:heavy_check_mark: Busca pela profundidade da rota<br>
+:heavy_check_mark: Busca por aprofundamento iterativo<br>
+:heavy_check_mark: Busca bidirecional
 
 <br>
 
-<b>Demonstração: </b>a imagem abaixo mostra a rota gerada na tentativa de atender a uma demanda no município de Queluz - SP. Porém, é possível verificar a rota utilizando qualquer cidade do Vale do Paraíba (paulista) acessando (https://share.streamlit.io/guilhermedonizetti/ia_disciplina/index.py). Para exibir a imagem do mapa, selecione "Buscar rota".<br>
+<b>Demonstração: </b>a imagem abaixo mostra a rota gerada na tentativa de atender a uma demanda no município de Queluz - SP. Porém, é possível verificar a rota utilizando qualquer cidade do Vale do Paraíba (paulista) acessando (https://share.streamlit.io/guilhermedonizetti/ia_disciplina/index.py) e também escolher qual método de busca será usado. Para exibir a imagem do mapa, selecione "Buscar rota".<br>
 <p align="center">
-<img src="https://github.com/guilhermedonizetti/IA_disciplina/blob/master/images/mapa_gerado.png" width="500" height="510"></img>
+<img src="https://github.com/guilhermedonizetti/IA_disciplina/blob/master/images/resultado.png" width="770" height="455"></img>
 </p>
+
+<br>
+
+<b>Modelagem: </b>O projeto é modelado em cima de um cenário real, que é o mapa do Vale do Paraíba, mas os pontos de Ajuda Humanirária (AH) e Atendimento Hospitalar usados no projeto não necessariamente correspondem à situação real da região, pois são usados apenas para validação dos algoritmos. Porém foram estrategicamente escolhidos como:
+
+<ul>
+  <li>Pontos de Ajuda Humanitária: Caraguatatuba, Cruzeiro, Guaratinguetá, São José dos Campos e Taubaté.</li>
+  <li>Pontos de Atendimento: Aparecida, Caçapava, Cruzeiro, Guaratinguetá, Lorena, Pindamonhangaba, Queluz, São José dos Campos, São Sebastião e Taubaté.</li>
+</ul>
+
+Foi considerado o tamanho do território da região, a distribuição da população e os agrupamentos de cidades (sub-regiões) dentro do Vale. Com essa distribuição, cada ponto de atendimento hospitalar atende a 4 cidades e de ajuda humanitária atende a 8 cidades.
 
 <br>
 

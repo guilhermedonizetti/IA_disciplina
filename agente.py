@@ -155,3 +155,21 @@ class Agente(Busca):
             caminho_unico.append(rota_At[g])
         
         return caminho_unico
+    
+    #Funcao para retornar os pontos de AH e atendimento
+    def mostrar_pontos(self):
+        AH = AT = ""
+        
+        for i in range(len(self.pontos_ajuda_hum)):
+            if i == len(self.pontos_ajuda_hum)-1:
+                AH = AH + " e {}.".format(self.pontos_ajuda_hum[i])
+            else:
+                AH = AH + " {},".format(self.pontos_ajuda_hum[i])
+
+        for i in range(len(self.pontos_atendimento)):
+            if i == len(self.pontos_atendimento)-1:
+                AT = AT + " e {}.".format(self.pontos_atendimento[i])
+            else:
+                AT = AT + " {},".format(self.pontos_atendimento[i])
+
+        return AH, AT

@@ -2,7 +2,6 @@ import streamlit as st
 import pydeck as pdk
 from requests import get
 from json import loads
-from datetime import datetime
 from agente import Agente
 from lista_cidades import lista_cidades
 
@@ -68,6 +67,7 @@ class RotasCidades:
                 coord_da_rota[i]['lon2'] = coord_da_rota[i+1]['lon']
         
         self.plotar_mapa(coord_da_rota)
+        self.apresentar_pontos()
     
     #metodo para desenhar e exibir mapa
     def plotar_mapa(self, coord_rota):
@@ -122,6 +122,13 @@ class RotasCidades:
             else:
                 desc = desc+" {},".format(rota[i])
         return desc
+    
+    #Funcao para apresentar os pontos de AH e Atendimento
+    def apresentar_pontos(self):
+        agente = Agente()
+        AH, AT = agente.mostrar_pontos()
+        st.info("Os pontos de Ajuda Humanitária no Vale do Paraíba são:{}".format(AH))
+        st.info("Os pontos de Atendimento Hospitalar são:{}".format(AT))
 
 if __name__ == "__main__":
     rc = RotasCidades()

@@ -41,14 +41,15 @@ Foi considerado o tamanho do território da região, a distribuição da popula�
 
 <br>
 
-<b>Devs: </b>
-<table>
+<p align="center"><b>Devs: </b></p>
+<table align="center">
   <tr>
     <td align="center"><a href="https://br.linkedin.com/in/guilhermedonizetti-ads"><img src="https://avatars.githubusercontent.com/u/47000945?v=4" width="100px;" alt=""/><br /><sub><b>Guilherme Donizetti</b></sub></a><br /><a href="https://github.com/guilhermedonizetti/IA_disciplina/commits?author=guilhermedonizetti" title="Desenvolvedor">💻</a></td>
     <td align="center"><a href="https://github.com/SACRIER"><img src="https://avatars.githubusercontent.com/u/61637378?v=4" width="100px;" alt=""/><br /><sub><b>Luiz Fernando Rodrigues</b></sub></a><br /><a href="https://github.com/guilhermedonizetti/IA_disciplina/commits?author=SACRIER" title="Desenvolvedor">💻</a></td>
     <td align="center"><a href="https://github.com/Ricardo-Braga1"><img src="https://avatars.githubusercontent.com/u/89203941?v=4" width="100px;" alt=""/><br /><sub><b>Ricardo Braga</b></sub></a><br /><a href="https://github.com/guilhermedonizetti/IA_disciplina/commits?author=Ricardo-Braga1" title="Desenvolvedor">💻</a></td>
   </tr>
 </table>
+</center>
 
 <br>
 

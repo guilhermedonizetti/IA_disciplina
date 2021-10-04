@@ -1,9 +1,9 @@
 """Esse modulo contem as funcoes relacionadas ao caminho"""
 
-from lista import Lista
+from lista import lista
 import lista_cidades as cd
 
-class Busca(Lista):
+class Busca(lista):
 
     nos = cd.lista_cidades
     grafo = cd.ligacoes_cidades
@@ -14,10 +14,10 @@ class Busca(Lista):
         \ncaminho recebe uma lista."""
 
         # manipular a FILA para a busca
-        l1 = Lista()
+        l1 = lista()
 
         # cópia para apresentar o caminho (somente inserção)
-        l2 = Lista()
+        l2 = lista()
 
         # insere ponto inicial como nó raiz da árvore
         l1.insereUltimo(inicio,0,None)
@@ -78,10 +78,10 @@ class Busca(Lista):
         caminho = []
 
         # manipular a FILA para a busca
-        l1 = Lista()
+        l1 = lista()
 
         # cópia para apresentar o caminho (somente inserção)
-        l2 = Lista()
+        l2 = lista()
 
         # insere ponto inicial como nó raiz da árvore
         l1.insereUltimo(inicio,0,None)
@@ -133,7 +133,7 @@ class Busca(Lista):
                     # verifica se é o objetivo
                     if novo == fim:
                         caminho += l2.exibeCaminho()
-                        #print("Árvore de busca:\n",l2.exibeLista())
+                        #print("Árvore de busca:\n",l2.exibelista())
                         return caminho
 
         return "caminho não encontrado"
@@ -144,10 +144,10 @@ class Busca(Lista):
             caminho = []
 
             # manipular a FILA para a busca
-            l1 = Lista()
+            l1 = lista()
 
             # cópia para apresentar o caminho (somente inserção)
-            l2 = Lista()
+            l2 = lista()
 
             # insere ponto inicial como nó raiz da árvore
             l1.insereUltimo(inicio,0,None)
@@ -200,7 +200,7 @@ class Busca(Lista):
                             # verifica se é o objetivo
                             if novo == fim:
                                 caminho += l2.exibeCaminho()
-                                #print("Árvore de busca:\n",l2.exibeLista())
+                                #print("Árvore de busca:\n",l2.exibelista())
                                 return caminho
 
             return "Caminho não encontrado."
@@ -213,10 +213,10 @@ class Busca(Lista):
                 caminho = []
         
                 # manipular a FILA para a busca
-                l1 = Lista()
+                l1 = lista()
         
                 # cópia para apresentar o caminho (somente inserção)
-                l2 = Lista()
+                l2 = lista()
         
                 # insere ponto inicial como nó raiz da árvore
                 l1.insereUltimo(inicio,0,None)
@@ -269,7 +269,7 @@ class Busca(Lista):
                                 # verifica se é o objetivo
                                 if novo == fim:
                                     caminho += l2.exibeCaminho()
-                                    #print("Árvore de busca:\n",l2.exibeLista())
+                                    #print("Árvore de busca:\n",l2.exibelista())
                                     return caminho
 
             return "caminho não encontrado"
@@ -279,12 +279,12 @@ class Busca(Lista):
             nos = cd.lista_cidades
 
             # listas para a busca a partir da origem - busca 1
-            l1 = Lista()      # busca na FILA
-            l2 = Lista()      # cópia da árvore completa
+            l1 = lista()      # busca na FILA
+            l2 = lista()      # cópia da árvore completa
 
             # listas para a busca a partir da destino -  busca 2
-            l3 = Lista()      # busca na FILA
-            l4 = Lista()      # cópia da árvore completa
+            l3 = lista()      # busca na FILA
+            l4 = lista()      # cópia da árvore completa
 
             # cria estrutura para controle de nós visitados
             visitado = []

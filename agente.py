@@ -14,7 +14,7 @@ class Agente(Busca):
 
         #Define 10 cidades para ponto de Atendimento hospitalar
         self.pontos_atendimento = ["QUELUZ", "CRUZEIRO", "LORENA",
-                    "GUARANTINGUETÁ", "APARECIDA", "TAUBATÉ",
+                    "GUARATINGUETÁ", "APARECIDA", "TAUBATÉ",
                     "PINDAMONHANGABA", "SÃO JOSÉ DOS CAMPOS",
                     "CAÇAPAVA", "SÃO SEBASTIÃO"]
         
@@ -35,7 +35,7 @@ class Agente(Busca):
         Recebe a cidade que teve a ajuda humanitaria e realiza as tentativas de gerar
         uma rota partindo dessa cidade ate a mais proxima dentre as da lista 'pontos_atendimento'."""
 
-        tam_caminho = 100000
+        tam_caminho = 10000000000
 
         #se escolher Amplitude
         if metodo == self.metodos[0]:
@@ -92,7 +92,7 @@ class Agente(Busca):
         Recebe a cidade que precisa da ajuda humanitaria e realiza as tentativas
         de gerar uma rota partindo das cidades da lista 'pontos_ajuda_hum' usando menos Memoria."""
         
-        tam_caminho = 100000
+        tam_caminho = 10000000000
 
         #se escolher Amplitude
         if metodo == self.metodos[0]:
@@ -139,6 +139,7 @@ class Agente(Busca):
             for i in self.pontos_ajuda_hum: #para cada cidade da lista tenta um caminho...
                 caminho = self.bidirecional(i, cidade_final.upper())
                 #o menor caminho sera o atual
+                print("\nCaminho Bidirecional saindo de {}: {}".format(i, caminho))
                 if len(caminho) < tam_caminho:
                     tam_caminho = len(caminho)
                     self.rota_Ajuda_Hum = caminho

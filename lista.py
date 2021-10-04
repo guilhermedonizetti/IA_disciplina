@@ -1,7 +1,12 @@
-"""Esse modulo se refere a estrutura de dados.
-Classes existentes aqui: Lista, Nos"""
-
-class Lista(object):
+class No(object):
+    def __init__(self, pai=None, valor1=None, valor2=None, anterior=None, proximo=None):
+        self.pai       = pai
+        self.valor1    = valor1
+        self.valor2    = valor2
+        self.anterior  = anterior
+        self.proximo   = proximo
+    
+class lista(object):
     head = None
     tail = None
 
@@ -25,7 +30,7 @@ class Lista(object):
             self.head = novo_no
         else:
             self.tail.proximo = novo_no
-            novo_no.anterior   = self.tail
+            novo_no.anterior = self.tail
         self.tail = novo_no
 
     # REMOVE NO INÍCIO DA LISTA
@@ -53,6 +58,12 @@ class Lista(object):
             else:
                 self.head = None
             return no
+
+    def primeiro(self):
+        return self.head
+    
+    def ultimo(self):
+        return self.tail
 
     def vazio(self):
         if self.head is None:
@@ -85,7 +96,7 @@ class Lista(object):
         return caminho
     
     def exibeCaminho1(self,valor):
-
+                
         atual = self.head
         while atual.valor1 != valor:
             atual = atual.proximo
@@ -97,18 +108,3 @@ class Lista(object):
             atual = atual.pai
         caminho.append(atual.valor1)
         return caminho
-
-    def primeiro(self):
-        return self.head
-    
-    def ultimo(self):
-        return self.tail
-
-#____ CLASSE NO
-class No(object):
-    def __init__(self, pai=None, valor1=None, valor2=None, anterior=None, proximo=None):
-        self.pai       = pai
-        self.valor1    = valor1
-        self.valor2    = valor2
-        self.anterior  = anterior
-        self.proximo   = proximo

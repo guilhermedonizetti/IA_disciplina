@@ -2,7 +2,7 @@ import streamlit as st
 import pydeck as pdk
 from requests import get
 from json import loads
-from agente import Agente
+from agente import Buscador
 from lista_cidades import lista_cidades
 
 class RotasCidades:
@@ -35,7 +35,7 @@ class RotasCidades:
     
     #metodo para gerar a rota de Ajuda Humanitaria e Atendimento
     def gerar_rota(self):
-        agente = Agente()
+        agente = Buscador()
         rota_AH = agente.encontrar_ajuda_humanitaria(self.cidade_final, self.metodo, self.limite)
         rota_AT = agente.encontrar_atendimento(self.cidade_final, self.metodo, self.limite)
         #rota_AH = agente.profundidade(self.cidade_final)
@@ -125,7 +125,7 @@ class RotasCidades:
     
     #Funcao para apresentar os pontos de AH e Atendimento
     def apresentar_pontos(self):
-        agente = Agente()
+        agente = Buscador()
         AH, AT = agente.mostrar_pontos()
         st.info("Os pontos de Ajuda Humanitária no Vale do Paraíba são:{}".format(AH))
         st.info("Os pontos de Atendimento Hospitalar são:{}".format(AT))

@@ -2,9 +2,10 @@
 \no que chama os metodos conforme o necessario."""
 
 from main import Busca
-from time import time
+from waypy.agent import Agente
+import lista_cidades as lc
 
-class Agente(Busca):
+class Buscador(Busca):
 
     #Inicializa as listas que sao de valores padrao
     def __init__(self):
@@ -28,6 +29,12 @@ class Agente(Busca):
         
         #Inicia a lista que vai receber as rotas
         self.rota_Ajuda_Hum =  self.rota_atendimento = []
+
+        #CLASSE QUE VAI GERAR ROTA (WAYPY)
+        self.agent = Agente()
+        self.agent.graphs = lc.ligacoes_cidades
+        self.agent.nodes = lc.lista_cidades
+        self.agent.starting_points = self.pontos_ajuda_hum
 
 
     def encontrar_atendimento(self, cidade_final, metodo, limite=False):
@@ -97,7 +104,7 @@ class Agente(Busca):
         #se escolher Amplitude
         if metodo == self.metodos[0]:
             for i in self.pontos_ajuda_hum: #para cada cidade da lista tenta um caminho...
-                caminho = self.amplitude(i, cidade_final.upper())
+                caminho = self.agent.encontrar_ajuda_humanitaria(cidade_final.upper(), metodo)
                 #o menor caminho sera o atual
                 if len(caminho) < tam_caminho:
                     tam_caminho = len(caminho)
@@ -107,7 +114,7 @@ class Agente(Busca):
         #se escolher Profundidade
         if metodo == self.metodos[1]:
             for i in self.pontos_ajuda_hum: #para cada cidade da lista tenta um caminho...
-                caminho = self.profundidade(i, cidade_final.upper())
+                caminho = self.agent.encontrar_ajuda_humanitaria(cidade_final.upper(), metodo)
                 #o menor caminho sera o atual
                 if len(caminho) < tam_caminho:
                     tam_caminho = len(caminho)
@@ -117,7 +124,7 @@ class Agente(Busca):
         #se escolher Profundidade Limitada
         if metodo == self.metodos[2]:
             for i in self.pontos_ajuda_hum: #para cada cidade da lista tenta um caminho...
-                caminho = self.profundidade_limitada(i, cidade_final.upper(), 4)
+                caminho = self.agent.encontrar_ajuda_humanitaria(cidade_final.upper(), metodo, 4)
                 #o menor caminho sera o atual
                 if len(caminho) < tam_caminho:
                     tam_caminho = len(caminho)
@@ -127,7 +134,7 @@ class Agente(Busca):
         #se escolher Aprofundamento iterativo
         if metodo == self.metodos[3]:
             for i in self.pontos_ajuda_hum: #para cada cidade da lista tenta um caminho...
-                caminho = self.aprofundamento_iterativo(i, cidade_final.upper())
+                caminho = self.agent.encontrar_ajuda_humanitaria(cidade_final.upper(), metodo)
                 #o menor caminho sera o atual
                 if len(caminho) < tam_caminho:
                     tam_caminho = len(caminho)

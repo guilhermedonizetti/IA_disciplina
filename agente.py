@@ -100,53 +100,21 @@ class Buscador(Busca):
         de gerar uma rota partindo das cidades da lista 'pontos_ajuda_hum' usando menos Memoria."""
         
         tam_caminho = 10000000000
-
-        #se escolher Amplitude
-        if metodo == self.metodos[0]:
-            for i in self.pontos_ajuda_hum: #para cada cidade da lista tenta um caminho...
-                caminho = self.agent.encontrar_ajuda_humanitaria(cidade_final.upper(), metodo)
-                #o menor caminho sera o atual
-                if len(caminho) < tam_caminho:
-                    tam_caminho = len(caminho)
-                    self.rota_Ajuda_Hum = caminho
-            return self.rota_Ajuda_Hum
         
-        #se escolher Profundidade
-        if metodo == self.metodos[1]:
-            for i in self.pontos_ajuda_hum: #para cada cidade da lista tenta um caminho...
-                caminho = self.agent.encontrar_ajuda_humanitaria(cidade_final.upper(), metodo)
-                #o menor caminho sera o atual
-                if len(caminho) < tam_caminho:
-                    tam_caminho = len(caminho)
-                    self.rota_Ajuda_Hum = caminho
-            return self.rota_Ajuda_Hum
-        
-        #se escolher Profundidade Limitada
+        #Se escolher Profundidade Limitada
         if metodo == self.metodos[2]:
             for i in self.pontos_ajuda_hum: #para cada cidade da lista tenta um caminho...
-                caminho = self.agent.encontrar_ajuda_humanitaria(cidade_final.upper(), metodo, 4)
+                caminho = self.agent.encontrar_ajuda_humanitaria(cidade_final.upper(), metodo, limite)
                 #o menor caminho sera o atual
                 if len(caminho) < tam_caminho:
                     tam_caminho = len(caminho)
                     self.rota_Ajuda_Hum = caminho
             return self.rota_Ajuda_Hum
-        
-        #se escolher Aprofundamento iterativo
-        if metodo == self.metodos[3]:
+        #Se escolher qualquer outro metodo
+        else:
             for i in self.pontos_ajuda_hum: #para cada cidade da lista tenta um caminho...
                 caminho = self.agent.encontrar_ajuda_humanitaria(cidade_final.upper(), metodo)
                 #o menor caminho sera o atual
-                if len(caminho) < tam_caminho:
-                    tam_caminho = len(caminho)
-                    self.rota_Ajuda_Hum = caminho
-            return self.rota_Ajuda_Hum
-        
-        #se escolher Bidirecional
-        if metodo == self.metodos[4]:
-            for i in self.pontos_ajuda_hum: #para cada cidade da lista tenta um caminho...
-                caminho = self.bidirecional(i, cidade_final.upper())
-                #o menor caminho sera o atual
-                print("\nCaminho Bidirecional saindo de {}: {}".format(i, caminho))
                 if len(caminho) < tam_caminho:
                     tam_caminho = len(caminho)
                     self.rota_Ajuda_Hum = caminho

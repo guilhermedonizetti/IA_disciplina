@@ -12,7 +12,8 @@ class RotasCidades:
         self.cidades = lista_cidades
         self.cidade_final = ""
         self.metodos_opcoes = ["AMPLITUDE", "PROFUNDIDADE", "PROFUNDIDADE LIMITADA",
-                               "APROFUNDAMENTO ITERATIVO", "BIDIRECIONAL"]
+                               "APROFUNDAMENTO ITERATIVO", "BIDIRECIONAL", "A_ESTRELA",
+                               "GREEDY", "CUSTO_UNIFORME"]
 
     #metodo que ira iniciar quando a pagina carregar
     def inicial(self):
@@ -36,15 +37,18 @@ class RotasCidades:
     #metodo para gerar a rota de Ajuda Humanitaria e Atendimento
     def gerar_rota(self):
         agente = Buscador()
-        rota_AH = agente.encontrar_ajuda_humanitaria(self.cidade_final, self.metodo, self.limite)
-        rota_AT = agente.encontrar_atendimento(self.cidade_final, self.metodo, self.limite)
-        #rota_AH = agente.profundidade(self.cidade_final)
-        #rota_AH = agente.busca_profundidade_limitada(self.cidade_final)
-        #rota_At = agente.encontrar_atendimento(self.cidade_final)
-        rota_final = agente.unifica_caminho(rota_AH, rota_AT)
+        if self.metodos_opcoes.index(self.metodo) >= 5:
+            rota_AH = agente.encontrar_caminho_ponderado(self.cidade_final, self.metodo, 1)
+            rota_AT = agente.encontrar_caminho_ponderado(self.cidade_final, self.metodo, 2)
+            #rota_AT = agente.encontrar_atendimento(self.cidade_final, "AMPLITUDE")
+        else:
+            rota_AH = agente.encontrar_ajuda_humanitaria(self.cidade_final, self.metodo, self.limite)
+            rota_AT = agente.encontrar_atendimento(self.cidade_final, self.metodo, self.limite)
         
+        rota_final = agente.unifica_caminho(rota_AH, rota_AT)
         st.info("Ajuda Humanitária sai de: {}.".format(rota_final[0]))
         st.info("O Atendimento mais próximo é: {}.".format(rota_final[len(rota_final)-1]))
+        
         if len(rota_final)>=3:
             desc = self.descrever_rota(rota_final)
             st.success(desc)

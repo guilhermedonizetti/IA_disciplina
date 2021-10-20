@@ -1,11 +1,10 @@
 """Este modulo se refere ao agente:
 \no que chama os metodos conforme o necessario."""
 
-from main import Busca
 from waypy.agent import Agente
 import lista_cidades as lc
 
-class Buscador(Busca):
+class Buscador():
 
     #Inicializa as listas que sao de valores padrao
     def __init__(self):
@@ -21,7 +20,8 @@ class Buscador(Busca):
         
         #Declara o nome dos metodos a serem escolhidos para comparar com a entrada
         self.metodos = ["AMPLITUDE", "PROFUNDIDADE", "PROFUNDIDADE LIMITADA",
-                   "APROFUNDAMENTO ITERATIVO", "BIDIRECIONAL"]
+                   "APROFUNDAMENTO ITERATIVO", "BIDIRECIONAL", "A_ESTRELA",
+                   "GREEDY", "CUSTO_UNIFORME"]
 
         #Declara o nome dos metodos a serem chamados para executar
         self.metodos_main = ["amplitude", "profundidade", "profundidade_limitada",
@@ -34,65 +34,35 @@ class Buscador(Busca):
         self.agent = Agente()
         self.agent.graphs = lc.ligacoes_cidades
         self.agent.nodes = lc.lista_cidades
+        self.agent.weighted_graph = lc.ligacoes_cidades_valores
+        self.agent.heuristic = lc.heuristica
         self.agent.starting_points = self.pontos_ajuda_hum
+        self.agent.arrival_points = self.pontos_atendimento
 
 
     def encontrar_atendimento(self, cidade_final, metodo, limite=False):
         """Metodo para encontrar um caminho entre a cidade que recebeu a AH e o hospital mais proximo.
         Recebe a cidade que teve a ajuda humanitaria e realiza as tentativas de gerar
         uma rota partindo dessa cidade ate a mais proxima dentre as da lista 'pontos_atendimento'."""
-
+        
         tam_caminho = 10000000000
+        
+        #Se escolher Profundidade Limitada
+        if metodo == self.metodos[2] or metodo == self.metodos[4]:
+            metodo = self.metodos[2]
+            caminho = self.agent.encontrar_atendimento(cidade_final.upper(), metodo, limite)
+            self.rota_atendimento = caminho
+            return self.rota_atendimento
+        #Se escolher qualquer outro metodo
+        else:
+            try:
+                caminho = self.agent.encontrar_atendimento(cidade_final.upper(), metodo)
+                self.rota_atendimento = caminho
+            except:
+                caminho = self.agent.encontrar_atendimento(cidade_final.upper(), "AMPLITUDE")
+                self.rota_atendimento = caminho
+            return self.rota_atendimento
 
-        #se escolher Amplitude
-        if metodo == self.metodos[0]:
-            for i in self.pontos_atendimento: #para cada cidade da lista tenta um caminho...
-                caminho = self.amplitude(cidade_final.upper(), i)
-                #o menor caminho sera o atual
-                if len(caminho) < tam_caminho:
-                    tam_caminho = len(caminho)
-                    self.rota_Ajuda_Hum = caminho
-            return self.rota_Ajuda_Hum
-        
-        #se escolher Profundidade
-        if metodo == self.metodos[1]:
-            for i in self.pontos_atendimento: #para cada cidade da lista tenta um caminho...
-                caminho = self.profundidade(cidade_final.upper(), i)
-                #o menor caminho sera o atual
-                if len(caminho) < tam_caminho:
-                    tam_caminho = len(caminho)
-                    self.rota_Ajuda_Hum = caminho
-            return self.rota_Ajuda_Hum
-        
-        #se escolher Profundidade Limitada
-        if metodo == self.metodos[2]:
-            for i in self.pontos_atendimento: #para cada cidade da lista tenta um caminho...
-                caminho = self.profundidade_limitada(cidade_final.upper(), i, 4)
-                #o menor caminho sera o atual
-                if len(caminho) < tam_caminho:
-                    tam_caminho = len(caminho)
-                    self.rota_Ajuda_Hum = caminho
-            return self.rota_Ajuda_Hum
-        
-        #se escolher Aprofundamento iterativo
-        if metodo == self.metodos[3]:
-            for i in self.pontos_atendimento: #para cada cidade da lista tenta um caminho...
-                caminho = self.aprofundamento_iterativo(cidade_final.upper(), i)
-                #o menor caminho sera o atual
-                if len(caminho) < tam_caminho:
-                    tam_caminho = len(caminho)
-                    self.rota_Ajuda_Hum = caminho
-            return self.rota_Ajuda_Hum
-        
-        #se escolher Bidirecional
-        if metodo == self.metodos[4]:
-            for i in self.pontos_atendimento: #para cada cidade da lista tenta um caminho...
-                caminho = self.bidirecional(cidade_final.upper(), i)
-                #o menor caminho sera o atual
-                if len(caminho) < tam_caminho:
-                    tam_caminho = len(caminho)
-                    self.rota_Ajuda_Hum = caminho
-            return self.rota_Ajuda_Hum
 
     def encontrar_ajuda_humanitaria(self, cidade_final, metodo, limite=False):
         """Metodo para encontrar um caminho entre dois pontos.
@@ -102,23 +72,27 @@ class Buscador(Busca):
         tam_caminho = 10000000000
         
         #Se escolher Profundidade Limitada
-        if metodo == self.metodos[2]:
-            for i in self.pontos_ajuda_hum: #para cada cidade da lista tenta um caminho...
-                caminho = self.agent.encontrar_ajuda_humanitaria(cidade_final.upper(), metodo, limite)
-                #o menor caminho sera o atual
-                if len(caminho) < tam_caminho:
-                    tam_caminho = len(caminho)
-                    self.rota_Ajuda_Hum = caminho
+        if metodo == self.metodos[2] or metodo == self.metodos[4]:
+            metodo = self.metodos[2]
+            caminho = self.agent.encontrar_ajuda_humanitaria(cidade_final.upper(), metodo, limite)
+            self.rota_Ajuda_Hum = caminho
             return self.rota_Ajuda_Hum
         #Se escolher qualquer outro metodo
         else:
-            for i in self.pontos_ajuda_hum: #para cada cidade da lista tenta um caminho...
-                caminho = self.agent.encontrar_ajuda_humanitaria(cidade_final.upper(), metodo)
-                #o menor caminho sera o atual
-                if len(caminho) < tam_caminho:
-                    tam_caminho = len(caminho)
-                    self.rota_Ajuda_Hum = caminho
+            caminho = self.agent.encontrar_ajuda_humanitaria(cidade_final.upper(), metodo)
+            self.rota_Ajuda_Hum = caminho
             return self.rota_Ajuda_Hum
+
+    def encontrar_caminho_ponderado(self, cidade_final, metodo, nivel):
+        """Metodo para buscar caminho considerando os valores das arestas."""
+        tam_caminho = 10000000000
+        caminho = self.agent.valued_graph(cidade_final.upper(), metodo, nivel)
+        if caminho == None:
+            caminho = self.agent.valued_graph(cidade_final.upper(), "A_ESTRELA", nivel)
+        if nivel == 1:
+            caminho.reverse()
+        self.rota_Ajuda_Hum = caminho
+        return self.rota_Ajuda_Hum
     
     #Funcao para unir as rotas de ajuda humanitaria e atendimento
     def unifica_caminho(self, rota_AH, rota_At):

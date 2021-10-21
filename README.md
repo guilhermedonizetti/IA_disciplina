@@ -1,7 +1,7 @@
 <h1 align="center">IA_disciplina</h1>
 <p align="center">
 Repositório para desenvolvimento em equipe das atividades de Inteligência Artificial, disciplina do 6º Sem na Fatec Cruzeiro.<br>
-<i>Status do Projeto: <b>Em desenvolvimento</b> :computer:</i><br>
+<i>Status do Projeto: <b>Finalizado</b> :heavy_check_mark:</i><br>
 <b>Acesse ao programa: </b>https://share.streamlit.io/guilhermedonizetti/ia_disciplina/index.py
 </p>
 
@@ -14,12 +14,22 @@ Repositório para desenvolvimento em equipe das atividades de Inteligência Arti
 </p>
 
 <b>Etapas desenvolvidas: </b><br>
-:heavy_check_mark: Encontra a rota entre o ponto de Ajuda Humanitária mais próximo e uma cidade X<br>
-:heavy_check_mark: Encontra a rota entre a cidade X e o ponto de Atendimento Hospitalar mais próximo<br>
-:heavy_check_mark: Busca pela amplitude da rota<br>
-:heavy_check_mark: Busca pela profundidade da rota<br>
-:heavy_check_mark: Busca por aprofundamento iterativo<br>
-:heavy_check_mark: Busca bidirecional
+<ul>
+<li>Encontra a rota entre o ponto de Ajuda Humanitária mais próximo e uma cidade X</li>
+<li>Encontra a rota entre a cidade X e o ponto de Atendimento Hospitalar mais próximo</li>
+<li>Implementa 8 métodos de busca diferentes em grafos:</li>
+  <ul>
+    <li>Amplitude</li>
+    <li>Profundidade</li>
+    <li>Profundidade Limitada</li>
+    <li>Aprofundamento Iterativo</li>
+    <li>Bidirecional</li>
+    <li>A-estrela</li>
+    <li>Greedy</li>
+    <li>Custo Uniforme</li>
+  </ul>
+<li>Geração de mapas</li>
+</ul>
 
 <br>
 
@@ -40,6 +50,12 @@ Repositório para desenvolvimento em equipe das atividades de Inteligência Arti
 Foi considerado o tamanho do território da região, a distribuição da população e os agrupamentos de cidades (sub-regiões) dentro do Vale. Com essa distribuição, cada ponto de atendimento hospitalar atende a 4 cidades e de ajuda humanitária atende a 8 cidades.
 
 <br>
+
+<b>Uso: </b>o projeto pode ser acessado no link apresentado acima. Mas se executar localmente, lembre-se que existe requirements e certifique-se de ter o ambiente preparado, execute:
+
+```python
+streamlit run index.py
+```
 
 <p align="center"><b>Devs: </b></p>
 <table align="center">
